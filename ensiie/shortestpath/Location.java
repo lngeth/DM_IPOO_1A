@@ -66,6 +66,14 @@ class Location {
     this.distance = distance;
   }
 
+  public Location getFrom() {
+    return from;
+  }
+
+  public void setFrom(Location from) {
+    this.from = from;
+  }
+
   public double distanceTo(Location to) {
     final int R = 6378;
     double lat1 = this.getLatitude();
@@ -77,6 +85,40 @@ class Location {
   }
 
   public void findPathTo(Location to) {
-    
+    // Initialization
+    LocationSet set = new LocationSet();
+    this.distance = 0;
+    Location cur = this;
+    cur.setFrom(null);
+
+    // algo path finding
+    while (cur != null && cur.getName() != to.getName()) {
+      cur.proceedNode(set);
+      cur = set.removeMin();
+    }
+
+    // print result
+    if (cur == null) {
+      System.out.println("Pas de chemin possible entre : " + this.name + " et " + to.getName());
+    } else {
+      System.out.println("Your trip from " + this.name + " to " + to.getName() + " in reverse order");
+      do {
+        System.out.println("  " + cur.getName() + " at " + cur.getDistance());
+      } while ((cur = cur.getFrom()) != null);
+    }
+  }
+
+  public void proceedNode(LocationSet set) {
+    for (int i = 0; i < this.neighbors.length; i++) {
+      if (this.neighbors[i].getDistance() == Double.POSITIVE_INFINITY) { // non atteint
+        set.add(this.neighbors[i]); // put atteint
+      }
+
+      double distanceToNeighbor = this.distance + distanceTo(this.neighbors[i]);
+      if (distanceToNeighbor < this.neighbors[i].getDistance()) { // non atteint or lower distance
+        this.neighbors[i].setDistance(distanceToNeighbor);
+        this.neighbors[i].setFrom(this);
+      }
+    }
   }
 }
