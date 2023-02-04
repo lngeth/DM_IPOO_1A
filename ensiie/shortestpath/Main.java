@@ -41,5 +41,7 @@ class Main {
     sansebestian.setNeighbors (bayonne, pampelune, bilbao);
     pampelune.setNeighbors(bilbao, sansebestian, pau);
     bilbao.setNeighbors(sansebestian, pampelune);
+
+    evry.findPathTo(bilbao);
   }
 }

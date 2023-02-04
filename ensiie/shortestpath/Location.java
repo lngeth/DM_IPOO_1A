@@ -6,6 +6,7 @@ class Location {
   private double longitude;
   private Location[] neighbors;
   private double distance;
+  private Location from;
 
   /**
    * Initialization of an instance of Location with distance at Random between [1, 100]
@@ -18,7 +19,7 @@ class Location {
     this.latitude = (Math.PI * latitude) / 180;
     this.longitude = (Math.PI * longitude) / 180;
     this.neighbors = null;
-    this.distance = Math.random() * 100;
+    this.distance = Double.POSITIVE_INFINITY;
   }
   
   public void display() {
@@ -73,5 +74,9 @@ class Location {
     double long2 = to.getLongitude();
 
     return R * (Math.PI/2 - Math.asin(Math.sin(lat2) * Math.sin(lat1) + Math.cos(long2 - long1) * Math.cos(lat2) * Math.cos(lat1)));
+  }
+
+  public void findPathTo(Location to) {
+    
   }
 }
