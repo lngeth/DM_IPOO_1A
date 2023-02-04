@@ -102,9 +102,16 @@ class Location {
       System.out.println("Pas de chemin possible entre : " + this.name + " et " + to.getName());
     } else {
       System.out.println("Your trip from " + this.name + " to " + to.getName() + " in reverse order");
+      
+      // bad order print
+      /*
       do {
         System.out.println("  " + cur.getName() + " at " + cur.getDistance());
       } while ((cur = cur.getFrom()) != null);
+      */
+
+      // good order print
+      this.goodOrder(cur);
     }
   }
 
@@ -120,5 +127,11 @@ class Location {
         this.neighbors[i].setFrom(this);
       }
     }
+  }
+
+  private void goodOrder(Location cur) {
+    if (cur.getFrom() != null)
+      goodOrder(cur.getFrom());
+    System.out.println("  " + cur.getName() + " at " + cur.getDistance());
   }
 }
