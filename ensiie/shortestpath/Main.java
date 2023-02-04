@@ -45,5 +45,7 @@ class Main {
     evry.findPathTo(bilbao);
     System.out.println("-------------------");
     bilbao.findPathTo(evry);
+    System.out.println("-------------------");
+    angers.findPathTo(toulouse);
   }
 }

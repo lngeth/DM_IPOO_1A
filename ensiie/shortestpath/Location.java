@@ -113,6 +113,7 @@ class Location {
       // good order print
       this.goodOrder(cur);
     }
+    this.reinit();
   }
 
   public void proceedNode(LocationSet set) {
@@ -133,5 +134,13 @@ class Location {
     if (cur.getFrom() != null)
       goodOrder(cur.getFrom());
     System.out.println("  " + cur.getName() + " at " + cur.getDistance());
+  }
+
+  public void reinit() {
+    this.distance = Double.POSITIVE_INFINITY;
+    for (int i = 0; i < this.neighbors.length; i++) {
+      if (this.neighbors[i].getDistance() != Double.POSITIVE_INFINITY)
+        this.neighbors[i].reinit();
+    }
   }
 }
