@@ -4,19 +4,34 @@ class LocationSet {
   private Location[] locations;
   private int nbLocations;
 
+  /**
+   * Default constructor
+   */
   public LocationSet() {
     this.locations = null;
     this.nbLocations = 0;
   }
   
+  /**
+   * Getter of list of reference of instance of Location
+   * @return the reference of a list of Location
+   */
   public Location[] getLocations() {
     return locations;
   }
 
+  /**
+   * Getter of the number of Location inside the list
+   * @return Int number
+   */
   public int getNbLocations() {
     return nbLocations;
   }
 
+  /**
+   * Add a Location inside the list of Location
+   * @param location the reference of instance of Location
+   */
   public void add(Location location) {
     if (this.locations == null) { // array not initialized
       this.locations = new Location[2];
@@ -41,6 +56,10 @@ class LocationSet {
     this.nbLocations++;
   }
 
+  /**
+   * Remove from list the Location with lowest distance and return it
+   * @return the Location with minimum distance
+   */
   public Location removeMin() {
     Location minDistanceLocation = null;
     
@@ -69,6 +88,9 @@ class LocationSet {
     return minDistanceLocation;
   }
   
+  /**
+   * toString method that prints out content of the list
+   */
   @Override
   public String toString() {
     String res = "";
