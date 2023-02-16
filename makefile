@@ -1,7 +1,7 @@
-path=./ensiie/shortespath
+path=ensiie/shortestpath
 
 all: main
 
 main:
-	javac ensiie/shortestpath/Main.java
-	java ensiie/shortestpath/Main
+	javac ${path}/Main.java
+	java ${path}/Main
